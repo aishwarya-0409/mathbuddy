@@ -100,10 +100,25 @@ function displayQuestion() {
 
     currentQuestion.options.forEach((option, index) => {
         const optionItem = document.createElement("li");
-        optionItem.textContent = option;
+        
+        // ADD THIS CODE RIGHT HERE, AFTER CREATING optionItem
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `option-${index}`;
+        checkbox.value = option;
+        
+        // Then continue with creating the label and setting up event listeners
+        const label = document.createElement("label");
+        label.htmlFor = `option-${index}`;
+        label.textContent = option;
+        
+        optionItem.appendChild(checkbox);
+        optionItem.appendChild(label);
+        
         optionItem.addEventListener("click", () => {
             checkAnswer(option, currentQuestion.correctAnswer);
         });
+        
         optionsList.appendChild(optionItem);
     });
 
